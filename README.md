@@ -6,6 +6,6 @@
 - The second part is my session on Public Tableau to create a dashboard about the Covid 19 situation on over the world.
 3. Credits
 -  I want to thank Alex The Analyst for his introduction and tutorial on his youtube channel about making portfolio for a fresh data analyst like me.
--  I could not have done this without the data that has been shared from Our World In Data team.
+-  I could not have done this without the data that has been shared from Our World In Data team. The data is updated from the beginning of the pandemic until late October 2022.
 4. Contact:
 Please contact me at npxdung21@gmail.com in case you have something to say on this project.
