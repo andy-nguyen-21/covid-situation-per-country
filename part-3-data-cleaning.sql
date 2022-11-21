@@ -128,10 +128,6 @@ SET SoldAsVacant = CASE WHEN SoldAsVacant = 'Y' THEN 'Yes'
 
 ------------------------------------------------------------------------------------------------------------------------------
 
--- Remove Duplicates
--- Save it for later
-------------------------------------------------------------------------------------------------------------------------------
-
 -- Delete Unused Columns
 
 SELECT *
@@ -139,3 +135,44 @@ FROM PortfolioProject..NashvilleHousing
 
 ALTER TABLE PortfolioProject..NashvilleHousing
 DROP COLUMN PropertyAddress, SaleDate, OwnerAddress
+
+------------------------------------------------------------------------------------------------------------------------------
+
+-- Remove Duplicates
+
+WITH RowNumCte AS (
+	SELECT *,
+	ROW_NUMBER() OVER (
+		PARTITION BY 
+			[ParcelID]
+		  ,[LandUse]
+		  ,[SalePrice]
+		  ,[LegalReference]
+		  ,[SoldAsVacant]
+		  ,[OwnerName]
+		  ,[Acreage]
+		  ,[TaxDistrict]
+		  ,[LandValue]
+		  ,[BuildingValue]
+		  ,[TotalValue]
+		  ,[YearBuilt]
+		  ,[Bedrooms]
+		  ,[FullBath]
+		  ,[HalfBath]
+		  ,[SaleDate2]
+		  ,[PropertySplitCity]
+		  ,[PropertySplitAddress]
+		  ,[OwnerSplitAddress]
+		  ,[OwnerSplitCity]
+		  ,[OwnerSplitState]
+		ORDER BY
+			UniqueID
+			) row_num
+	FROM PortfolioProject..NashvilleHousing
+)
+--SELECT *
+DELETE
+FROM RowNumCte
+WHERE row_num > 1
+------------------------------------------------------------------------------------------------------------------------------
+
